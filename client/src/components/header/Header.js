@@ -45,7 +45,19 @@ function Header() {
            </div>
        
              <ul style = {transForm}>
-                 <li><Link to="/"><i className= "fas fa-search"></i>Search</Link></li>
+                 <li><Link to="/"><i className="fas fa-home"></i> <span style={{ marginLeft: "10px" }}>
+				Home
+				</span></Link></li>
+                 <li><Link to="/"><i className="far fa-address-book"></i><span style={{ marginLeft: "10px" }}>
+				About US</span></Link></li>
+                 <li><Link to="/"><i className="fas fa-dollar-sign"></i><span style={{ marginLeft: "10px" }}>
+				 Offers</span></Link></li>
+
+               
+                <li> <input type ="search" placeholder="Search here" id="search"
+                 /><Link to="/"><span style={{ marginLeft: "10px" }}><i className="fas fa-search"></i>
+                 </span></Link></li>
+
                  {
                      isLogged
                      ? userLink()

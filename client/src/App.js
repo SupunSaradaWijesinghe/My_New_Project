@@ -8,6 +8,7 @@ import { dispatchLogin, fetchUser, dispatchGetUser } from './redux/actions/authA
 
 import Header from './components/header/Header'
 import Body from './components/body/Body'
+import Footer from './components/footer/Footer'
 import axios from 'axios';
 
 
@@ -41,10 +42,11 @@ useEffect(() => {
 },[token, dispatch])
 
   return (
-    <Router>
+    <Router> 
       <div className="App">
         <Header/>
        <Body/>
+       <Footer/>
       </div>
     </Router>
   );

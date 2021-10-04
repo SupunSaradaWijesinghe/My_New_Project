@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
+import ReactHTMLTableTOExcel from "react-html-table-to-excel"
 import {isLength, isMatch} from '../../utils/validation/Validation'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
+
 
 
 const initialState = {
@@ -35,6 +37,26 @@ function Profile() {
 
 
     const dispatch = useDispatch()
+
+    const [value, setValue] = useState('');
+    const [Users, setUsers] = useState(users)
+    const [tableFilter, setTableFilter] = useState([]);
+
+
+    const filterData = (e) => {
+        if(e.target.value !== ""){
+            setValue(e.target.value);
+
+            const filterTable = Users.filter(o=>Object.keys(o).some(k=>
+                String(o[k]).toLowerCase().includes(e.target.value.toLowerCase())
+                ));
+                setTableFilter([...filterTable])
+        }else {
+            setValue(e.target.value);
+            setUsers([...users])
+        }
+
+    }
 
     useEffect(() => {       
         if(isAdmin){
@@ -190,8 +212,7 @@ function Profile() {
 
                 <div>
                     <em style = {{color: "crimson"}}>
-                         * If you update your password here, you will not be
-                          able to login quickly using google and facebook.
+                         * You can update your name and password using this form.
                     </em>
                 </div>
             
@@ -201,10 +222,17 @@ function Profile() {
 
 
              <div className = "col-right">
-                  <h2>{isAdmin ? "Users" : "My Offres"}</h2>
+                  <h2>{isAdmin ? "Users" : "My Offers"}</h2>
 
                   <div style={{overfolwX: "auto"}}>
-                      <table className = "customers">
+                             <div className="search">
+                                Search: <input type="text" placeholder="Search Users" value={value}
+                                onChange={filterData} />
+                                                        
+                              </div>    
+                                <hr></hr>
+                      <table className = "customers" id="cus-table" >
+                     
                          <thead>
                              <tr>
                                 <th>ID</th> 
@@ -215,9 +243,37 @@ function Profile() {
                                 
                              </tr>
                          </thead>
-                         <tbody>
-                             {
-                                 users.map(user => (
+                         <tbody >
+                             {    
+
+                             value.length > 0 ? tableFilter.map((user) => {
+                                 return (
+                                    < tr key={user._id} >
+                                    <td>{user._id}</td> 
+                                    <td>{user.name}</td> 
+                                    <td>{user.email}</td> 
+                                    <td>
+                                              {
+                                                  user.role === 1
+                                                  ? <i className="fas fa-check" title = "Admin"></i>
+                                                  : <i className="fas fa-times" title = "User"></i>
+                                              }
+                                        </td> 
+
+                                        <td>
+                                             <Link to = {`/edit_user/${user._id}`}>
+                                             <i className="fas fa-edit" title="Edit"></i>
+                                              </Link>
+                                             <i className="fas fa-trash-alt" title ="Remove"
+                                             onClick = {() => handleDelete(user._id)}></i>
+                                        </td> 
+                                        
+                                   </tr> 
+                                 )
+                             })
+                             :
+                           
+                               users.map(user => (
                                     < tr key={user._id} >
                                          <td>{user._id}</td> 
                                          <td>{user.name}</td> 
@@ -229,6 +285,7 @@ function Profile() {
                                                   : <i className="fas fa-times" title = "User"></i>
                                               }
                                         </td> 
+                                       
                                         <td>
                                              <Link to = {`/edit_user/${user._id}`}>
                                              <i className="fas fa-edit" title="Edit"></i>
@@ -243,7 +300,22 @@ function Profile() {
                              }
                                 
                          </tbody>
+                                         
                       </table>
+                      <div>
+                                 { user.role === 1
+                                         ? <ReactHTMLTableTOExcel 
+                                           className="btn_edit"
+                                           table="cus-table"
+                                           filename="Users Excel file"
+                                           sheet="Sheet"
+                                           buttonText="Export to Excel"/>
+                                           
+                                        :<></>
+                                 }
+                     </div>
+
+                                          
                   </div>
              </div>
             
