@@ -294,7 +294,7 @@ function Profile() {
                                              onClick = {() => handleDelete(user._id)}></i>
                                         </td> 
                                      
-                                </tr>
+                                </tr> 
 
                                  ))
                              }
