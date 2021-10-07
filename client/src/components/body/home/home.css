@@ -3,9 +3,14 @@
     padding: 0px;
     background: whitesmoke;
     color: #333;
+    background-image: url(../../../images/honew.jpg);
+    background-size: 100%;
+    
    
     
 }
+
+
 .home_page h2{
     font-size: 2rem;
     margin: 10px 0;
@@ -20,29 +25,42 @@
     font-style: italic;
     text-align: center;
     font-size: 24px;
+    font-weight: bold;
 }
 
-.home_page ul{
-    color: rgb(4, 12, 12);
-    background: rgb(189, 193, 252);
-    padding: 40px 35px;
+    .home_page ul{
+    padding: 10px 15px;
     display: inline-block;
     border-radius: 5px;
     margin: 60px 60px 80px 80px;
     letter-spacing: 1.2px;
     text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-size: 30px;
+    border-radius: 1px;
+    text-decoration: none;
    
-    
-}
+    }
+
+/*
+.home_page ul{
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    border-radius: 3px;
+    margin-top: 15px;
+    margin-left: 500px;
+}*/
 
 .home_page ul li{
 
     display: inline-block;
-    opacity:0.7;
+    opacity:0.8;
     color: rgb(3, 0, 0);
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
 
 }
 
@@ -53,4 +71,15 @@
 .home_page h3{
     color: rgb(222, 245, 239);
     margin-top: 30px;
+}
+
+.home_page ul li button[type="submit"] {
+    font-size: 24px;
+    box-sizing: border-box;
+    font-weight: bold;
+    background: #333;
+    color: white;
+    width:120%;
+    border-color: blanchedalmond;
+   
 }

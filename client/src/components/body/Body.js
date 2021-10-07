@@ -5,7 +5,7 @@ import Register from './auth/Register'
 import ActivationEmail from './auth/ActivationEmail'
 import NotFound from '../utils/NotFound/NotFound'
 
-import ForgotPass from '../body/auth/ForgotPassword'
+import ForgotPass from '../body/auth/ForgotPassword' 
 import ResetPass from '../body/auth/ResetPassword'
 import Profile from '../body/profile/Profile'
 import EditUser from '../body/profile/EditUser'

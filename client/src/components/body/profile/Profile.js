@@ -226,7 +226,7 @@ function Profile() {
 
                   <div style={{overfolwX: "auto"}}>
                              <div className="search">
-                                Search: <input type="text" placeholder="Search Users" value={value}
+                                <input type="text" placeholder="Search Users" value={value}
                                 onChange={filterData} />
                                                         
                               </div>    
